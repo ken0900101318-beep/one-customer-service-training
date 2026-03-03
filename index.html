@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE桌遊客服人員教育訓練</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #27ACB2 0%, #1a8a8f 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .nav {
+            background: #f8f9fa;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #27ACB2;
+            border-radius: 20px;
+            color: #27ACB2;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.active {
+            background: #27ACB2;
+            color: white;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .info-card {
+            background: #f8f9ff;
+            border-left: 4px solid #27ACB2;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning-card {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success-card {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .store-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .store-card:hover {
+            border-color: #27ACB2;
+            box-shadow: 0 5px 15px rgba(39, 172, 178, 0.2);
+        }
+
+        .store-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #27ACB2;
+            margin-bottom: 10px;
+        }
+
+        .store-info {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+
+        .price-table {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #27ACB2;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            background: #f8f9fa;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #27ACB2;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .backend-link {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        h2 {
+            color: #27ACB2;
+            margin: 20px 0 15px;
+            font-size: 1.5em;
+        }
+
+        h3 {
+            color: #333;
+            margin: 15px 0 10px;
+            font-size: 1.2em;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .step {
+            background: #e3f2fd;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #2196f3;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .nav {
+                padding: 10px;
+            }
+            
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 標題 -->
+        <div class="header">
+            <h1>📞 ONE桌遊客服人員教育訓練</h1>
+            <p>電話客服 & LINE 官方帳號人工回覆指南</p>
+        </div>
+
+        <!-- 導航 -->
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('basic')">📋 基本資料</button>
+            <button class="nav-btn" onclick="showSection('stores')">🏪 分店資料</button>
+            <button class="nav-btn" onclick="showSection('faq')">❓ 常見問題</button>
+            <button class="nav-btn" onclick="showSection('backend')">💻 後台操作</button>
+        </div>
+
+        <!-- 內容區 -->
+        <div class="content">
+            <!-- 基本資料 -->
+            <div id="basic" class="section active">
+                <h2>📋 公司基本資料</h2>
+                
+                <div class="info-card">
+                    <strong>🏢 公司名稱：</strong>ONE桌遊<br>
+                    <strong>⏰ 營業時間：</strong>24小時（無人自助店）<br>
+                    <strong>📞 客服電話：</strong>0986-995-673<br>
+                    <strong>🕐 客服時間：</strong>每日 12:00–24:00<br>
+                    <small>※ 非上班時間請先留言，上班後儘快回覆</small>
+                </div>
+
+                <h2>🎯 服務重點（必讀）</h2>
+                
+                <div class="warning-card">
+                    <strong>⚠️ 無人店特性</strong><br>
+                    • 現場<strong>完全沒有</strong>店員、櫃台、管理員<br>
+                    • <strong>絕對禁止</strong>說「請找現場人員」、「去櫃台」<br>
+                    • 24小時自助營運，現場無人值守
+                </div>
+
+                <div class="info-card">
+                    <strong>🚫 不提供的服務</strong><br>
+                    • 不提供配桌、找咖、湊桌服務<br>
+                    • 若客人詢問「缺咖」、「一個人能玩嗎」<br>
+                    → 回覆：「不好意思，我們是無人自助店，無法協助媒合或配桌，請您確認人數到齊後再行預約。」
+                </div>
+
+                <h2>🍔 環境規則</h2>
+                
+                <div class="success-card">
+                    <strong>✅ 外食政策</strong><br>
+                    歡迎攜帶外食，但食用完畢請務必收拾垃圾並丟入垃圾桶
+                </div>
+
+                <div class="info-card">
+                    <strong>📺 電視/視聽設備（重要！）</strong><br>
+                    <br>
+                    ⭕️ <strong>大包廂（VIP）</strong>：<strong>有</strong>電視！<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;• 內建 YouTube（免費）<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;• Netflix（需客人自己登入帳號）<br>
+                    <br>
+                    ❌ <strong>一般包廂/小包廂</strong>：<strong>完全沒有</strong>電視<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;• 沒有電腦螢幕<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;• 沒有投影機<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;• 不能接 Switch/筆電<br>
+                    <br>
+                    <small>※ 如客人問一般包廂（如 333, 555）是否有電視，請明確告知「沒有提供」</small>
+                </div>
+
+                <h2>🎁 優惠活動</h2>
+                
+                <div class="success-card">
+                    <strong>💰 新朋友續時券</strong><br>
+                    • 首次消費，系統會在「訂單正式開始（開桌通電）」後自動發送<br>
+                    • 領取位置：網頁/APP 選單 → 「電子票券」或「我的票券」
+                </div>
+            </div>
+
+            <!-- 分店資料 -->
+            <div id="stores" class="section">
+                <h2>🏪 全台分店資料</h2>
+                
+                <input type="text" class="search-box" id="storeSearch" placeholder="🔍 搜尋分店（例如：一中、土城、高雄）" oninput="filterStores()">
+
+                <div id="storeList">
+                    <!-- 新北地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 新北地區</h3>
+                    
+                    <div class="store-card" data-keywords="新北 土城 亞東">
+                        <div class="store-name">1. 土城亞東店</div>
+                        <div class="store-info">📍 地址：新北市土城區四川路16號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu7td" target="_blank">https://pse.is/8eu7td</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>有</strong>（有糖可樂、無糖可樂、雪碧、檸檬紅茶）</div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="store-info">🌸 全店皆有花</div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟩 開放：1H200／3H350／4H400／6H600／8H750｜早鳥5H400<br>
+                            🟦 小包：1H250／3H550／4H700／6H1000／8H1200｜早鳥5H500<br>
+                            🟥 大包：1H350／3H750／4H950／6H1300／8H1600｜早鳥5H600
+                        </div>
+                        <div class="store-info">📶 Wifi：88888888</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/VqUNQMfJRuVhkjnEA" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <div class="store-card" data-keywords="新北 新莊 輔大">
+                        <div class="store-name">2. 新莊輔大店</div>
+                        <div class="store-info">📍 地址：新北市新莊區中正路671號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu7xa" target="_blank">https://pse.is/8eu7xa</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>有</strong>（有糖可樂、無糖可樂、雪碧、檸檬紅茶、蘋果汁）</div>
+                        <div class="store-info">💧 飲水機：<strong>無</strong></div>
+                        <div class="store-info">🌸 全店皆有花</div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H600／5H700／6H850／7H1000｜早鳥4H550／早鳥6H650
+                        </div>
+                        <div class="store-info">📶 Wifi：88888888</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/MGtayerMY7Q68QwA7" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <!-- 桃園地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 桃園地區</h3>
+                    
+                    <div class="store-card" data-keywords="桃園 平鎮">
+                        <div class="store-name">1. 桃園平鎮店</div>
+                        <div class="store-info">📍 地址：桃園市平鎮區振平街20號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu8ft" target="_blank">https://pse.is/8eu8ft</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>有</strong>（無糖可樂、氣泡水、雪碧、檸檬紅茶、雪梨茶、美粒果）</div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="store-info">🌸 全店皆有花</div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H500／5H600／6H700｜早鳥5H500<br>
+                            🟥 大包：1H300／3H700／5H800／6H900｜早鳥5H600
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/NURWXyF9YHMP8HdHA" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <!-- 台中地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 台中地區</h3>
+                    
+                    <div class="store-card" data-keywords="台中 一中">
+                        <div class="store-name">1. 台中一中店</div>
+                        <div class="store-info">📍 地址：台中市北區三民路三段210-3號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eluab" target="_blank">https://pse.is/8eluab</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格（無早鳥）</strong><br>
+                            🟦 小包：1H300／3H600／5H800／7H1000<br>
+                            🟥 大包：1H350／3H700／5H900／7H1100<br>
+                            🟩 開放：1H200／3H400／5H600／7H800
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/3a3DAvRYoCWUd7dW9" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <div class="store-card" data-keywords="台中 逢甲 無老板">
+                        <div class="store-name">2. 台中逢甲無老板店</div>
+                        <div class="store-info">📍 地址：台中市西屯區文華路138巷6號2樓</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8elube" target="_blank">https://pse.is/8elube</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H500／5H700／7H900｜早鳥4H400／早鳥6H600<br>
+                            🟥 大包：1H300／3H600／5H800／7H1000｜早鳥4H600／早鳥6H800
+                        </div>
+                        <div class="store-info">📶 Wifi：168168168</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/r7Xu3LsmHedBeGjn8" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <div class="store-card" data-keywords="台中 民權">
+                        <div class="store-name">3. 台中民權店</div>
+                        <div class="store-info">📍 地址：台中市西區民權路153號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8qc3r2" target="_blank">https://pse.is/8qc3r2</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>無</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格（無早鳥）</strong><br>
+                            🟦 小包：1H300／3H600／5H800／7H1000<br>
+                            🟩 開放：1H200／3H400／5H600／7H800
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                    </div>
+
+                    <!-- 雲林地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 雲林地區</h3>
+                    
+                    <div class="store-card" data-keywords="雲林 虎尾">
+                        <div class="store-name">1. 雲林虎尾店</div>
+                        <div class="store-info">📍 地址：雲林縣虎尾鎮工專路39號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu8nf" target="_blank">https://pse.is/8eu8nf</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟩 開放：1H150／3H300／5H400<br>
+                            🟦 小包：1H250／3H500／4H550／6H600<br>
+                            🟥 大包：1H300／3H600／4H700／6H800
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/Y4xhRDSZpv175mxh7" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <!-- 嘉義地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 嘉義地區</h3>
+                    
+                    <div class="store-card" data-keywords="嘉義 光彩">
+                        <div class="store-name">1. 嘉義光彩店</div>
+                        <div class="store-info">📍 地址：嘉義市西區光彩街568號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8elu9f" target="_blank">https://pse.is/8elu9f</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>有</strong>（投幣式，口味會變動）</div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟩 開放：1H150／3H300／5H400<br>
+                            🟦 小包：1H250／3H500／6H600／9H1000<br>
+                            🟥 大包：1H300／3H600／6H800／9H1100
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/joQG3ypyqxsMjLjb7" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <div class="store-card" data-keywords="嘉義 公園">
+                        <div class="store-name">2. 嘉義公園店</div>
+                        <div class="store-info">📍 地址：嘉義市東區新生路325號2樓</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu6sd" target="_blank">https://pse.is/8eu6sd</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H500／6H600／9H1000<br>
+                            🟩 開放：1H150／3H300／5H400
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/JiFPJy9cirSn4jAr6" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <!-- 台南地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 台南地區</h3>
+                    
+                    <div class="store-card" data-keywords="台南 永康 崑大">
+                        <div class="store-name">1. 永康崑大店</div>
+                        <div class="store-info">📍 地址：台南市永康區崑大路81號2樓</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu6ej" target="_blank">https://pse.is/8eu6ej</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>有</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H500／5H700／7H900｜早鳥4H400／早鳥6H600<br>
+                            🟥 大包：1H300／3H600／5H800／7H1000｜早鳥4H600／早鳥6H800<br>
+                            🟩 開放：1H150／3H300／5H400
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/snFy6kjYDrGreLjE7" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <!-- 高雄地區 -->
+                    <h3 style="background: #27ACB2; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">📍 高雄地區</h3>
+                    
+                    <div class="store-card" data-keywords="高雄 前鎮">
+                        <div class="store-name">1. 高雄前鎮店</div>
+                        <div class="store-info">📍 地址：高雄市前鎮區民權二路428號</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8eu9a6" target="_blank">https://pse.is/8eu9a6</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>有</strong>（芬達、雪碧、有糖可樂、蘋果汁、萊姆氣泡水）</div>
+                        <div class="store-info">💧 飲水機：<strong>無</strong></div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H250／3H500／4H600／5H700／7H900｜早鳥4H500／早鳥6H600<br>
+                            🟩 開放：1H150／3H300／5H500｜早鳥5H400<br>
+                            🟥 VIP：1H400／3H1000／4H1100／5H1200／6H1300／7H1400／10H1500｜早鳥5H1000
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/j15ptzifzw2RTEGcA" target="_blank">Google評論</a></div>
+                    </div>
+
+                    <div class="store-card" data-keywords="高雄 仁武">
+                        <div class="store-name">2. 高雄仁武店</div>
+                        <div class="store-info">📍 地址：高雄市仁武區京吉六路67號2樓</div>
+                        <div class="store-info">🔗 預約網址：<a href="https://pse.is/8j8fpu" target="_blank">https://pse.is/8j8fpu</a></div>
+                        <div class="store-info">🥤 飲料機：<strong>無</strong></div>
+                        <div class="store-info">💧 飲水機：<strong>無</strong></div>
+                        <div class="store-info">🌸 全店無花（麻將桌設定）</div>
+                        <div class="price-table">
+                            <strong>💰 價格</strong><br>
+                            🟦 小包：1H300／2H400／4H600／6H800｜早鳥4H500／早鳥6H600<br>
+                            🟥 大包：1H350／2H600／4H800／6H950｜早鳥4H600／早鳥6H800
+                        </div>
+                        <div class="store-info">📶 Wifi：11223344</div>
+                        <div class="store-info">⭐ <a href="https://maps.app.goo.gl/LuLHykwwn5XD1H7x6" target="_blank">Google評論</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 常見問題 -->
+            <div id="faq" class="section">
+                <h2>❓ 常見問題處理</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        💰 金錢爭議（卡幣、重複扣款、沒找錢）
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>安撫話術：</strong><br>
+                        「非常抱歉！無人繳費機偶有卡幣狀況，但請放心，系統都有紀錄，款項絕對不會少！」
+                        <br><br>
+                        <strong>處理方式（依時間）：</strong><br>
+                        🔴 <strong>00:00 - 11:59（非上班時間）</strong><br>
+                        → 「非客服時間，請先留言『手機、時間、金額』，上班後優先退款。」
+                        <br><br>
+                        🟢 <strong>12:00 - 23:59（上班時間）</strong><br>
+                        → 「目前客服在線，請直接告訴我您的手機號碼、繳費時間、金額，我立刻幫您查帳。」
+                        <br><br>
+                        <a href="#backend" class="backend-link">👉 後台退款操作教學</a>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        📞 改單、取消與退費
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>情境 A：未來預約（1小時後/明天）</strong><br>
+                        → 「因距離開場還有 1 小時以上，請直接點擊訂單連結操作『取消/退訂』，金額會退回儲值金，再重新預約即可！👌」
+                        <br><br>
+                        <strong>情境 B：即將開始（1小時內）</strong><br>
+                        → 「開場前 1 小時內無法自動取消。請告訴我您的訂單資訊和聯絡電話，我協助您處理。」
+                        <br><br>
+                        <a href="#backend" class="backend-link">👉 後台取消訂單教學</a>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🔐 進場密碼與電力問題
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>Q：密碼在哪裡？</strong><br>
+                        → 訂單開始後，重新整理網頁就會看到開門密碼。
+                        <br><br>
+                        <strong>Q：麻將桌沒電？</strong><br>
+                        → 剛進場或續時，請去訂單頁面按「立即開始」。
+                        <br><br>
+                        <strong>Q：Wifi密碼？</strong><br>
+                        → 請查看各分店資料（每家不同）
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🧹 環境髒亂問題
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>說明：</strong>我們是自助店，採巡場制。
+                        <br><br>
+                        <strong>方案 A：更換位置</strong><br>
+                        → 「請在 APP 選『更換位置』，系統會為您安排乾淨的包廂。」
+                        <br><br>
+                        <strong>方案 B：補償</strong><br>
+                        → 「請拍照上傳，我們核對後會補發『續時券』給您。」
+                        <br><br>
+                        <a href="#backend" class="backend-link">👉 後台更換位置教學</a>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🀄 麻將桌故障排除
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>步驟一：詢問狀況</strong><br>
+                        → 「請問是『張數不對』還是『卡住』？」
+                        <br><br>
+                        <strong>情況 1：剛進場就發生（張數不對/一直洗）</strong><br>
+                        • 原因：檔位設定跑掉<br>
+                        • 解決：「請確認牆上的『張數對照表』，並調整桌下的檔位開關到正確數字（如144張或136張）。」
+                        <br><br>
+                        <strong>情況 2：打到一半卡住</strong><br>
+                        • 原因：有牌掉進縫隙、籌碼卡住<br>
+                        • 解決：「請同時長按操作盤對角的兩個骰子鍵，進行強制重置。」
+                        <br><br>
+                        <strong>情況 3：兩副牌混在一起（兩種顏色）</strong><br>
+                        • 解決：「這需要人工處理，請打開桌面把混入的牌挑出來，或我可以協助您聯繫現場處理。」
+                        <br><br>
+                        <strong>⚠️ 若客人回報無效，才引導轉真人</strong>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🪑 椅子損壞
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        → 「請先找公共空間的備用凳子更換，如果還有問題請告訴我包廂編號，我會通知維修。」
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🎁 續時券在哪裡領？
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        → 「首次消費後，系統會在『訂單正式開始（開桌通電）』後自動發送至您的帳號。」<br>
+                        → 「領取位置：請點擊網頁/APP選單中的『電子票券』或『我的票券』。」
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        🏪 非本店店家詢問
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>情境：</strong>客人詢問的店名不在我們的分店清單中<br>
+                        （例如：新莊丹鳳店）
+                        <br><br>
+                        <strong>回覆：</strong><br>
+                        「不好意思，『[店名]』非我司據點，請確認以免跑錯！」
+                        <br><br>
+                        <strong>模糊簡稱處理：</strong><br>
+                        如客人只說「一中」、「新莊」<br>
+                        → 「請問您是指『台中一中店』嗎？」
+                    </div>
+                </div>
+            </div>
+
+            <!-- 後台操作 -->
+            <div id="backend" class="section">
+                <h2>💻 商家端後台操作</h2>
+                
+                <div class="info-card">
+                    <strong>📱 商家端教育訓練完整版</strong><br>
+                    詳細的後台操作請參考：<br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" style="color: #27ACB2; font-weight: bold;">
+                        🔗 ONE桌遊商家端管理系統教育訓練
+                    </a>
+                </div>
+
+                <h3>🔧 常用操作快速指引</h3>
+
+                <div class="step">
+                    <strong>1️⃣ 幫客人更換包廂</strong><br>
+                    <br>
+                    <strong>情境：</strong>客人反應包廂髒亂，需要更換<br>
+                    <br>
+                    <strong>後台步驟：</strong><br>
+                    1. 登入商家端 APP<br>
+                    2. 點選「訂單管理」<br>
+                    3. 找到客人的訂單<br>
+                    4. 點擊「更換包廂」<br>
+                    5. 選擇乾淨的可用包廂<br>
+                    6. 確認更換<br>
+                    <br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" class="backend-link">
+                        📖 查看完整教學（第 10 章）
+                    </a>
+                </div>
+
+                <div class="step">
+                    <strong>2️⃣ 取消訂單/退款</strong><br>
+                    <br>
+                    <strong>情境：</strong>客人開場前 1 小時內需要取消<br>
+                    <br>
+                    <strong>後台步驟：</strong><br>
+                    1. 登入商家端 APP<br>
+                    2. 點選「訂單管理」<br>
+                    3. 找到客人的訂單<br>
+                    4. 點擊「取消訂單」<br>
+                    5. 選擇退款方式（退回儲值金）<br>
+                    6. 確認取消<br>
+                    <br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" class="backend-link">
+                        📖 查看完整教學（第 11 章）
+                    </a>
+                </div>
+
+                <div class="step">
+                    <strong>3️⃣ 查詢客人訂單</strong><br>
+                    <br>
+                    <strong>情境：</strong>需要查詢客人的訂單狀態或歷史記錄<br>
+                    <br>
+                    <strong>後台步驟：</strong><br>
+                    1. 登入商家端 APP<br>
+                    2. 點選「訂單管理」<br>
+                    3. 在搜尋框輸入「手機號碼」或「訂單編號」<br>
+                    4. 查看訂單詳情<br>
+                    <br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" class="backend-link">
+                        📖 查看完整教學（第 9 章）
+                    </a>
+                </div>
+
+                <div class="step">
+                    <strong>4️⃣ 處理金錢爭議（卡幣/重複扣款）</strong><br>
+                    <br>
+                    <strong>情境：</strong>客人反應繳費機卡幣或重複扣款<br>
+                    <br>
+                    <strong>後台步驟：</strong><br>
+                    1. 登入商家端 APP<br>
+                    2. 點選「財務管理」→「繳費記錄」<br>
+                    3. 輸入客人手機號碼和時間<br>
+                    4. 查看繳費記錄（會顯示所有交易）<br>
+                    5. 確認是否有重複扣款<br>
+                    6. 點擊「申請退款」<br>
+                    7. 填寫退款金額和原因<br>
+                    8. 提交申請（總部審核後退款）<br>
+                    <br>
+                    <strong>⚠️ 注意：</strong>退款通常在 1-3 個工作天內處理<br>
+                    <br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" class="backend-link">
+                        📖 查看完整教學（第 13 章）
+                    </a>
+                </div>
+
+                <div class="step">
+                    <strong>5️⃣ 補發續時券</strong><br>
+                    <br>
+                    <strong>情境：</strong>客人遇到包廂髒亂等問題，需要補償<br>
+                    <br>
+                    <strong>後台步驟：</strong><br>
+                    1. 登入商家端 APP<br>
+                    2. 點選「會員管理」<br>
+                    3. 搜尋客人手機號碼<br>
+                    4. 點擊「發送票券」<br>
+                    5. 選擇票券類型（續時券）<br>
+                    6. 填寫時數和有效期限<br>
+                    7. 備註原因（例如：包廂環境問題補償）<br>
+                    8. 確認發送<br>
+                    <br>
+                    <a href="https://ken0900101318-beep.github.io/one-merchant-training/" target="_blank" class="backend-link">
+                        📖 查看完整教學（第 15 章）
+                    </a>
+                </div>
+
+                <h3>🆘 緊急聯絡</h3>
+                
+                <div class="warning-card">
+                    <strong>遇到無法處理的問題時：</strong><br>
+                    <br>
+                    📞 聯絡總部客服主管<br>
+                    🕐 上班時間：12:00 - 24:00<br>
+                    💬 LINE 官方帳號：（請向主管索取）<br>
+                    <br>
+                    <strong>非上班時間：</strong><br>
+                    請先安撫客人並記錄問題，隔天上班後優先處理
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切換分頁
+        function showSection(sectionId) {
+            // 隱藏所有區塊
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有按鈕的 active 狀態
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 顯示選中的區塊
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 高亮選中的按鈕
+            event.target.classList.add('active');
+        }
+
+        // FAQ 展開/收合
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            answer.classList.toggle('show');
+            icon.textContent = answer.classList.contains('show') ? '▲' : '▼';
+        }
+
+        // 分店搜尋
+        function filterStores() {
+            const searchText = document.getElementById('storeSearch').value.toLowerCase();
+            const stores = document.querySelectorAll('.store-card');
+            
+            stores.forEach(store => {
+                const keywords = store.getAttribute('data-keywords').toLowerCase();
+                const storeName = store.querySelector('.store-name').textContent.toLowerCase();
+                
+                if (keywords.includes(searchText) || storeName.includes(searchText) || searchText === '') {
+                    store.style.display = 'block';
+                } else {
+                    store.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
